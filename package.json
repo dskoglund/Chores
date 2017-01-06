@@ -1,10 +1,18 @@
 {
   "name": "davidskoglund",
   "version": "1.0.0",
-  "description": "children's chores app",
+  "description": "children chores app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "nodemon .",
+    "start": "node .",
+    "test": "mocha",
+    "tdd": "mocha -w -R nyan",
+    "seed": "node seed",
+    "heroku-postbuild": "npm run seed"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "repository": {
     "type": "git",
@@ -15,5 +23,20 @@
   "bugs": {
     "url": "https://github.com/dskoglund/Chores/issues"
   },
-  "homepage": "https://github.com/dskoglund/Chores#readme"
+  "homepage": "https://github.com/dskoglund/Chores#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.14.0",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0",
+    "request": "^2.75.0"
+  },
+  "dependencies": {
+    "angular-route": "^1.5.8",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.4",
+    "morgan": "^1.7.0"
+  }
 }
