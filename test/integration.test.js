@@ -44,8 +44,8 @@ describe('Chores API', () => {
       })
   })
 
-  describe('GET /shoes', () => {
-    it('return a list of user objects and their chores', done => {
+  describe('GET /chores', () => {
+    it('returns a list of user objects and their chores', done => {
       request.get(TEST_URI + '/chores', { json: true }, (err, res, body) => {
         expect(err).to.be.null
         expect(res).to.have.property('statusCode', 200)

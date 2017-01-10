@@ -8,7 +8,6 @@ function HomeController($scope, $window, choresData) {
 
   const vm = this
 
-  vm.test = 'angular-test'
   vm.userList = []
 
   choresData.loadUsers().then(chores => {
