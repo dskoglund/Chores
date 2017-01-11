@@ -9,7 +9,7 @@ function HomeController($scope, $window, choresData) {
   const vm = this
 
   vm.childList = []
-  vm.newChild = { name: '', dailyChores:[] }
+  vm.newChild = { name: '', chores:[] }
   vm.create = create
 
   loadUsers()
@@ -22,8 +22,7 @@ function HomeController($scope, $window, choresData) {
 
   function create(child) {
     choresData.createChild(child)
-      .then(res => vm.chores.push(res) && (vm.newChild.name = ''))
-      .catch(() => showError('Server Error: Unable to Create Child'))
+      // .then(res => vm.childList.push(res) && (vm.newChild.name = ''))
   }
 }
 
@@ -41,7 +40,7 @@ function choresData($http) {
   }
 
   function createChild(item) {
-      return $http.post(URL, item).then(res => data)
+      return $http.post('./chores', item).then(res => res.data)
   }
   //
   // function createChore() {

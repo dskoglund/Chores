@@ -14,15 +14,19 @@ const appRouter = function(db) {
       })
   })
 
-  router.post('/', (req,res,next) => {
+  router.post('/', (req,res) => {
     let child = parse(req.body)
     chores
       .insertOne(child)
       .then(() => res.status(201).json(child))
-      .catch(next)
   })
 
   return router
+}
+
+function parse(child) {
+  child = Object.assign({}, child)
+  return child
 }
 
 module.exports = appRouter;

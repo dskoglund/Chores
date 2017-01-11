@@ -18,7 +18,7 @@
       <div ng-controller = "HomeController as home">
         <form ng-submit="home.create(home.newChild)">
           <input type="text" ng-model="home.newChild.name">
-          <input type="button" type="submit" value="Add Child">
+          <button type="sumbit" name="button">Add Child</button>
         </form>
         <div ng-repeat = "child in home.childList">
           <h1>{{ child.name }}</h1>
