@@ -15,14 +15,17 @@
   </head>
   <body>
     <div ng-app = "chores">
-      <div ng-controller = "HomeController as home">
-        <form ng-submit="home.create(home.newChild)">
-          <input type="text" ng-model="home.newChild.name">
+      <div ng-controller = "AdminController as admin">
+        <form ng-submit = "admin.createChild(admin.newChild)">
+          <input ng-model = "admin.newChild.name" type="text" >
           <button type="sumbit" name="button">Add Child</button>
         </form>
-        <div ng-repeat = "child in home.childList">
-          <h1>{{ child.name }}</h1>
-        </div>
+        <form ng-submit = "">
+          <div ng-repeat = "child in admin.childList">
+            <h1>{{ child.name }}</h1>
+            <button ng-click = "admin.deleteChild(child)" type="button" name="button">remove child</button>
+          </div>
+        </form>
       </div>
     </div>
     <script src="default.js"></script>
