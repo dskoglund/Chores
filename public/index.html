@@ -20,27 +20,25 @@
           <input ng-model = "admin.newChild.name" type="text" >
           <button type="sumbit" name="button">Add Child</button>
         </form>
-        <form ng-submit = "">
-          <ul ng-repeat = "child in admin.childList">
-            <li>{{ child.name }}</li>
-            <button ng-click = "admin.deleteChild(child)" type="button" name="button">remove child</button>
-            <form  ng-submit = "admin.createChore(admin.newChore, admin.choreTime, child)">
-              <select class="form-control" ng-model = "admin.choreTime.time">
-                <option value="morning">Morning</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
-              </select>
-              <input type="text" ng-model = "admin.newChore.chore">
-              <button type="submit" name="button">Add Chore</ßbutton>
-            </form>
-            <ul ng-repeat = "chores in child.dailyChores">
-              <li>{{ chores.time }}</li>
-              <ul ng-repeat = "chore in chores.chores">
-                <li>{{ chore.chore }}</li>
-              </ul>
+        <ul ng-repeat = "child in admin.childList">
+          <li>{{ child.name }}</li>
+          <button ng-click = "admin.deleteChild(child)" type="button" name="button">remove child</button>
+          <form  ng-submit = "admin.createChore(child.name, time, admin.newChore.chore)">
+            <select class="form-control" ng-model = "time">
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+            <input type="text" ng-model = "admin.newChore.chore">
+            <button type="submit" name="button">Add Chore</button>
+          </form>
+          <ul ng-repeat = "chores in child.dailyChores">
+            <li>{{ chores.time }}</li>
+            <ul ng-repeat = "chore in chores.chores">
+              <li>{{ chore.chore }}</li>
             </ul>
           </ul>
-        </form>
+        </ul>
       </div>
     </div>
     <script src="default.js"></script>

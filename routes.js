@@ -29,13 +29,15 @@ const appRouter = function(db) {
   })
 
   router.put('/:name/dailyChores/:time', (req, res) => {
-    let name = name: req.params.name
-    let time = dailyChores.req.params.time
+    console.log('got request')
+    let child = req.query.childName
+    let time = req.query.choreTime
+    let chore = req.query.choreName
     chores
-      .update({ name, time })
-  }
+      .update({ "name": child, "dailyChores.time": time },
+              { "$push" : { "dailyChores.$.chores" : { "chore": chore, "completed": false}}})
+  })
 
-  //   update({"name":"skyler", "dailyChores.time":"afternoon"},{"$push":{"dailyChores.$.chores":{"chore":"Do Your Homework", "completed": false}}})
   return router
 
 }

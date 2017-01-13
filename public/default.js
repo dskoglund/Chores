@@ -11,7 +11,7 @@ function AdminController($scope, $window, choresData) {
   vm.newChild = { name: '', dailyChores:[ { time: 'morning', chores: [{ chore: 'Brush Your Teeth', completed: false }] }, { time: 'afternoon', chores: [{ chore: '', completed: false }] }, { time: 'evening', chores: [{ chore: 'Brush Your Teeth', completed: false}] } ] }
   vm.createChild = create
   vm.deleteChild = remove
-  vm.choreTime = { time: '', chores: [vm.newChore]}
+  vm.choreTime = { time: '' }
   vm.newChore = { chore: '', complete: false}
   vm.createChore = createChores
 
@@ -33,8 +33,10 @@ function AdminController($scope, $window, choresData) {
       .then(loadUsers())
   }
 
-  function createChores(chore) {
-    choresData.createChore(chore)
+  function createChores(child, time, chore) {
+    console.log("createChore in angular")
+    choresData.createChore(child, time, chore)
+      .then(loadUsers())
   }
 
 }
@@ -60,8 +62,15 @@ function choresData($http) {
     return $http.delete('./chores' + '/' +  item._id).then(res => res.data)
   }
 
-  function createChore() {
-    return $http.post('./chore/')
+  function createChore(child, time, chore) {
+    //child returns "child.name" time returns "morning afternoon or evening" chore returns "text"
+    let config = {
+      params: { childName: child,
+                choreName: chore,
+                choreTime: time }
+    }
+    console.log(config)
+    return $http.put('./chores' + '/' + child + '/dailyChores' + '/' + time, config).then(res => res.data)
   }
 
   function readAll() {
