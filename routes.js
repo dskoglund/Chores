@@ -22,12 +22,20 @@ const appRouter = function(db) {
       .then(() => res.status(201).json(child))
   })
 
-  router.put('/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     const id = { _id: ObjectId(req.params.id) }
     chores
-      .remove(id, {justOne: true})
+      .removeOne(id, {justOne: true})
   })
 
+  router.put('/:name/dailyChores/:time', (req, res) => {
+    let name = name: req.params.name
+    let time = dailyChores.req.params.time
+    chores
+      .update({ name, time })
+  }
+
+  //   update({"name":"skyler", "dailyChores.time":"afternoon"},{"$push":{"dailyChores.$.chores":{"chore":"Do Your Homework", "completed": false}}})
   return router
 
 }
