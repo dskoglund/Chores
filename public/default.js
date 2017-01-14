@@ -70,7 +70,7 @@ function choresData($http) {
                 choreTime: time }
     }
     console.log(config)
-    return $http.put('./chores' + '/' + child + '/dailyChores' + '/' + time, config).then(res => res.data)
+    return $http.post('./chores' + '/' + child, config).then(res => res.data)
   }
 
   function readAll() {
