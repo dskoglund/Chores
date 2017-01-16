@@ -28,14 +28,11 @@ const appRouter = function(db) {
       .removeOne(id, {justOne: true})
   })
 
-  router.post('/', (req, res) => {
-    console.log('got request')
-  //   let child = req.param.childName
-  //   let time = req.param.choreTime
-  //   let chore = req.param.choreName
-  //   chores
-  //     .insertOne({ "name": child, "dailyChores.time": time },
-  //             { "$push" : { "dailyChores.$.chores" : { "chore": chore, "completed": false}}})
+  router.post('/:id', (req, res) => {
+    const id = { _id: ObjectId(req.body.id)}
+    const chore = { chores : { description: req.body.chore, time: req.body.time, completed: false }}
+    chores
+      .update( id ,{ $push : chore })
   })
 
   return router

@@ -8,11 +8,9 @@ function AdminController($scope, $window, choresData) {
 
   const vm = this
   vm.childList = []
-  vm.newChild = { name: '', dailyChores:[ { time: 'morning', chores: [{ chore: 'Brush Your Teeth', completed: false }] }, { time: 'afternoon', chores: [{ chore: '', completed: false }] }, { time: 'evening', chores: [{ chore: 'Brush Your Teeth', completed: false}] } ] }
+  vm.newChild = { name: '', chores: [{description: 'Brush Your Teeth', time: 'Evening', completed: false },{description: 'Brush Your Teeth', time: 'Morning', completed: false }]}
   vm.createChild = create
   vm.deleteChild = remove
-  vm.choreTime = { time: '' }
-  vm.newChore = { chore: '', complete: false}
   vm.createChore = createChores
 
   loadUsers()
@@ -25,7 +23,8 @@ function AdminController($scope, $window, choresData) {
 
   function create(child) {
     choresData.createChild(child)
-      .then(res => vm.childList.push(res) && (vm.newChild.name = ''))
+      .then(res => (vm.newChild.name = ''))
+      .then(loadUsers())
   }
 
   function remove(child) {
@@ -33,9 +32,8 @@ function AdminController($scope, $window, choresData) {
       .then(loadUsers())
   }
 
-  function createChores(child, time, chore) {
-    console.log("createChore in angular")
-    choresData.createChore(child, time, chore)
+  function createChores(child, time, description) {
+    choresData.createChore(child, time, description)
       .then(loadUsers())
   }
 
@@ -55,22 +53,22 @@ function choresData($http) {
   }
 
   function createChild(item) {
+      console.log(item)
       return $http.post('./chores', item).then(res => res.data)
+
   }
 
   function deleteChild(item) {
     return $http.delete('./chores' + '/' +  item._id).then(res => res.data)
   }
 
-  function createChore(child, time, chore) {
-    //child returns "child.name" time returns "morning afternoon or evening" chore returns "text"
-    let config = {
-      params: { childName: child,
-                choreName: chore,
-                choreTime: time }
+  function createChore(child, time, description) {
+    let params = {
+                id: child._id,
+                chore: description,
+                time: time
     }
-    console.log(config)
-    return $http.post('./chores' + '/' + child, config).then(res => res.data)
+    return $http.post('./chores' + '/' + child._id, params).then(res => res.data)
   }
 
   function readAll() {
