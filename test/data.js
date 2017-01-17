@@ -1,26 +1,38 @@
+const { ObjectId } = require( 'mongodb')
+
 module.exports = [
   {
     "name": "Skyler",
+    "_id": ObjectId(),
     "chores": [
       {
-        "chore": "Make Your Bed",
+        "time": "Morning",
+        "id": ObjectId(),
+        "description": "Make Your Bed",
         "completed": false
       },
       {
-        "chore": "Brush Your Teeth",
+        "time": "Evening",
+        "id": ObjectId(),
+        "description": "Brush Your Teeth",
         "completed": false
       }
     ]
   },
   {
     "name": "Riley",
+    "_id": ObjectId(),
     "chores": [
       {
-        "chore": "Make Your Bed",
+        "description": "Make Your Bed",
+        "id": ObjectId(),
+        "time": "Morning",
         "completed": false
       },
       {
-        "chore": "Brush Your Teeth",
+        "description": "Brush Your Teeth",
+        "id": ObjectId(),
+        "time": "Evening",
         "completed": false
       }
     ]

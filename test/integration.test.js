@@ -54,4 +54,20 @@ describe('Chores API', () => {
       })
     })
   })
+
+  describe('POST /chores', () => {
+    it('create a user(child) object and adds it to the database', done => {
+      request.post({
+        uri: TEST_URI + '/chores',
+        json: true,
+        body: { "name": "Dave", "chores": [] }
+      }, (err, res, body) => {
+        expect(err).to.be.null
+        expect(res).to.have.property('statusCode', 201)
+        expect(body).to.be.property( "name", "Dave" )
+        done()
+      })
+    })
+  })
+
 })
