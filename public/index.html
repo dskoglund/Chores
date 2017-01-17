@@ -21,9 +21,8 @@
           <button type="sumbit" name="button">Add Child</button>
         </form>
         <ul ng-repeat = "child in admin.childList">
-          <li>{{$index}}{{ child.name }}</li>
-          <li>{{ child._id }}</li>
-          <button ng-click = "admin.deleteChild(child)" type="button" name="button">remove child</button>
+          <li>{{ child.name }}</li>
+          <button ng-click = "admin.deleteChild(child)" type="button" name="button">Delete Child</button>
           <form  ng-submit = "admin.createChore(child, time, description)">
             <select class="form-control" ng-model = "time">
               <option value="Morning">Morning</option>
@@ -36,6 +35,7 @@
           <ul ng-repeat = "chore in child.chores">
             <li>{{ chore.time }}</li>
             <li>{{ chore.description }}</li>
+            <button ng-click = "admin.deleteChore(chore, child)" name="button">Delete Chore</button>
           </ul>
         </ul>
       </div>

@@ -8,10 +8,11 @@ function AdminController($scope, $window, choresData) {
 
   const vm = this
   vm.childList = []
-  vm.newChild = { name: '', chores: [{description: 'Brush Your Teeth', time: 'Evening', completed: false },{description: 'Brush Your Teeth', time: 'Morning', completed: false }]}
+  vm.newChild = { name: '', chores: []}
   vm.createChild = create
   vm.deleteChild = remove
   vm.createChore = createChores
+  vm.deleteChore = removeChores
 
   loadUsers()
 
@@ -37,6 +38,11 @@ function AdminController($scope, $window, choresData) {
       .then(loadUsers())
   }
 
+  function removeChores(chore, child) {
+    choresData.deleteChore(chore, child)
+      .then(loadUsers())
+  }
+
 }
 
 app.factory('choresData', choresData)
@@ -48,12 +54,11 @@ function choresData($http) {
     createChore,
     readAll,
     // updateChore,
-    // deleteChore,
+    deleteChore,
     deleteChild
   }
 
   function createChild(item) {
-      console.log(item)
       return $http.post('./chores', item).then(res => res.data)
 
   }
@@ -64,11 +69,18 @@ function choresData($http) {
 
   function createChore(child, time, description) {
     let params = {
-                id: child._id,
-                chore: description,
-                time: time
+      id: child._id,
+      chore: description,
+      time: time
     }
     return $http.post('./chores' + '/' + child._id, params).then(res => res.data)
+  }
+
+  function deleteChore(chore, child) {
+    let params = {
+      id: chore.id,
+    }
+    return $http.put('./chores' + '/' + child._id, params).then(res => res.data)
   }
 
   function readAll() {

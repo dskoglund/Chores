@@ -28,11 +28,22 @@ const appRouter = function(db) {
       .removeOne(id, {justOne: true})
   })
 
-  router.post('/:id', (req, res) => {
-    const id = { _id: ObjectId(req.body.id)}
-    const chore = { chores : { description: req.body.chore, time: req.body.time, completed: false }}
+  router.put('/:id', (req, res) => {
+    const id = { id: ObjectId(req.body.id) }
     chores
-      .update( id ,{ $push : chore })
+      .update({}, {  $pull: { chores: id } })
+
+  })
+
+  router.post('/:id', (req, res) => {
+    const _id = { _id: ObjectId(req.body.id)}
+    const x = ObjectId()
+    const chore = { chores : { description: req.body.chore,
+                              time: req.body.time,
+                              id: x,
+                              completed: false }}
+    chores
+      .update( _id ,{ $push : chore })
   })
 
   return router
