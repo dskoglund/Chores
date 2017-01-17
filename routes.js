@@ -7,6 +7,7 @@ const appRouter = function(db) {
   const router = new Router()
 
   router.get('/', (req, res) => {
+    console.log('get chores')
     chores
       .find()
       .toArray((err, docs) => {
@@ -16,6 +17,7 @@ const appRouter = function(db) {
   })
 
   router.post('/', (req, res) => {
+    console.log('create child')
     let child = parse(req.body)
     chores
       .insertOne(child)
@@ -23,21 +25,26 @@ const appRouter = function(db) {
   })
 
   router.delete('/:id', (req, res) => {
+    console.log('delete child')
     const id = { _id: ObjectId(req.params.id) }
     chores
       .removeOne(id, {justOne: true})
   })
 
   router.put('/:id', (req, res) => {
+    console.log('delete chore')
     const id = { id: ObjectId(req.body.id) }
+    console.log(id)
     chores
-      .update({}, {  $pull: { chores: id } })
+      .update( {}, { $pull: { chores: id } } )
 
   })
 
   router.post('/:id', (req, res) => {
     const _id = { _id: ObjectId(req.body.id)}
     const x = ObjectId()
+    console.log(x)
+    console.log('create chore')
     const chore = { chores : { description: req.body.chore,
                               time: req.body.time,
                               id: x,
