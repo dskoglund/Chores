@@ -20,7 +20,7 @@
           <input ng-model = "admin.newChild.name" type="text" >
           <button type="sumbit" name="button">Add Child</button>
         </form>
-        <ul ng-repeat = "child in admin.childList">
+        <ul ng-repeat = "child in admin.childList track by $index">
           <li>{{ child.name }}</li>
           <button ng-click = "admin.deleteChild(child)" type="button" name="button">Delete Child</button>
           <form  ng-submit = "admin.createChore(child, time, description)">

@@ -33,22 +33,23 @@ const appRouter = function(db) {
 
   router.put('/:id', (req, res) => {
     console.log('delete chore')
-    const id = { id: ObjectId(req.body.id) }
+    const id = { "id": ObjectId(req.body.id) }
     console.log(id)
     chores
-      .update( {}, { $pull: { chores: id } } )
+      .update( {}, { $pull: { "chores": id } } )
 
   })
 
   router.post('/:id', (req, res) => {
     const _id = { _id: ObjectId(req.body.id)}
     const x = ObjectId()
-    console.log(x)
+
     console.log('create chore')
     const chore = { chores : { description: req.body.chore,
                               time: req.body.time,
                               id: x,
                               completed: false }}
+    console.log(x)
     chores
       .update( _id ,{ $push : chore })
   })

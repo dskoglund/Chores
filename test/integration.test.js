@@ -70,4 +70,15 @@ describe('Chores API', () => {
     })
   })
 
+  describe('DELETE /chores', () => {
+    let _id = data[0]._id
+    console.log(_id)
+    it('removes a user(child) object from the database', done => {
+      request.delete(TEST_URI + '/chores/' + _id, {json : true}, (err, res, body) => {
+        // expect(res.status).to.equal(200)
+        done()
+      })
+    })
+  })
+
 })
