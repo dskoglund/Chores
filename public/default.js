@@ -81,9 +81,12 @@ function choresData($http) {
   }
 
   function deleteChore(chore, child) {
-    console.log(child._id)
+    console.log(child)
+    console.log(chore)
     let params = {
-      id: chore.id,
+      child: child,
+      chore: chore,
+      id: chore.id
     }
     return $http.put('./chores/' + child._id, params).then(res => res.data)
   }
