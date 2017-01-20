@@ -16,9 +16,6 @@ app.config(['$routeProvider', '$locationProvider',
       requireBase: false});
   }
 ])
-app.controller('ChooseChildController', ChooseChildController)
-
-
 
 app.controller('HomeController', HomeController)
 HomeController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
