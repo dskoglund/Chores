@@ -2,6 +2,33 @@ const app = angular.module('chores', [
   'ngRoute'
 ])
 
+app.config(['$routeProvider', '$locationProvider',
+  function($routeProvider, $locationProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: '/templates/chooseChild.html',
+        controller: 'ChooseChildController',
+        controllerAs: 'chooseChild'
+      })
+
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false});
+  }
+])
+app.controller('ChooseChildController', ChooseChildController)
+
+
+
+app.controller('HomeController', HomeController)
+HomeController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
+function HomeController($scope, $window, choreData, $anchorScroll, $location ) {
+
+  const vm = this
+
+  vm.test = 'home test'
+}
+
 app.controller('AdminController', AdminController)
 AdminController.$inject = ['$scope', '$window', 'choresData']
 function AdminController($scope, $window, choresData) {
