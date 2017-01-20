@@ -15,6 +15,10 @@
   </head>
   <body>
     <div ng-app = "chores">
+      <div ng-controller = "HomeController as home">
+        {{home.test}}
+
+      </div>
       <div ng-controller = "AdminController as admin">
         <form ng-submit = "admin.createChild(admin.newChild)">
           <input ng-model = "admin.newChild.name" type="text" >

@@ -5,10 +5,15 @@ const app = angular.module('chores', [
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/', {
+      .when('/chooseChild', {
         templateUrl: '/templates/chooseChild.html',
         controller: 'ChooseChildController',
         controllerAs: 'chooseChild'
+      })
+      .when('/admin', {
+        templateUrl: '/templates/admin.html',
+        controller: 'AdminController',
+        controllerAs: 'admin'
       })
 
     $locationProvider.html5Mode({
@@ -19,11 +24,19 @@ app.config(['$routeProvider', '$locationProvider',
 
 app.controller('HomeController', HomeController)
 HomeController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
-function HomeController($scope, $window, choreData, $anchorScroll, $location ) {
+function HomeController($scope, $window, choreData, $anchorScroll, $location) {
 
   const vm = this
 
   vm.test = 'home test'
+}
+
+app.controller('ChooseChildController', ChooseChildController)
+ChooseChildController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
+function ChooseChildController($scope, $window, choreData, $anchorScroll, $location) {
+
+  const vm = this
+
 }
 
 app.controller('AdminController', AdminController)
