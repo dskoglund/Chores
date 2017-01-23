@@ -17,31 +17,11 @@
     <div ng-app = "chores">
       <div ng-controller = "HomeController as home">
         {{home.test}}
-
-      </div>
-      <div ng-controller = "AdminController as admin">
-        <form ng-submit = "admin.createChild(admin.newChild)">
-          <input ng-model = "admin.newChild.name" type="text" >
-          <button type="sumbit" name="button">Add Child</button>
-        </form>
-        <ul ng-repeat = "child in admin.childList track by $index">
-          <li>{{ child.name }}</li>
-          <button ng-click = "admin.deleteChild(child)" type="button" name="button">Delete Child</button>
-          <form  ng-submit = "admin.createChore(child, time, description)">
-            <select class="form-control" ng-model = "time">
-              <option value="Morning">Morning</option>
-              <option value="Afternoon">Afternoon</option>
-              <option value="Evening">Evening</option>
-            </select>
-            <input type="text" ng-model = "description">
-            <button type="submit" name="button">Add Chore</button>
-          </form>
-          <ul ng-repeat = "chore in child.chores">
-            <li>{{ chore.time }}</li>
-            <li>{{ chore.description }}</li>
-            <button ng-click = "admin.deleteChore(chore, child)" name="button">Delete Chore</button>
-          </ul>
-        </ul>
+        <div ng-click="home.viewAdmin()">
+          Parents Portal
+        </div>
+        <div id="angular-view" ng-view>
+        </div>
       </div>
     </div>
     <script src="default.js"></script>

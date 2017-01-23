@@ -29,6 +29,12 @@ function HomeController($scope, $window, choreData, $anchorScroll, $location) {
   const vm = this
 
   vm.test = 'home test'
+  vm.viewAdmin = gotoAdmin
+
+  function gotoAdmin() {
+    $location.path('/admin')
+  }
+
 }
 
 app.controller('ChooseChildController', ChooseChildController)
