@@ -128,8 +128,7 @@ function choresData($http) {
     console.log(chore)
     let params = {
       child: child,
-      chore: chore,
-      id: chore.id
+      chore: chore
     }
     return $http.put('./chores/' + child._id, params).then(res => res.data)
   }
