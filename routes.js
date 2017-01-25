@@ -33,10 +33,10 @@ const appRouter = function(db) {
 
   router.put('/:id', (req, res) => {
     console.log('delete chore')
-    const pullQuery = { "id": ObjectId(req.body.chore.id) }
+    const pullQuery = { $pull: { "chores": { "id": ObjectId(req.body.chore.id) } } }
     const locationQuery = { "chores.id": ObjectId(req.body.chore.id) }
     chores
-      .update(locationQuery, { $pull: { "chores": pullQuery } })
+      .update(locationQuery, pullQuery)
 
   })
 
