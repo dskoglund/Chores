@@ -16,9 +16,11 @@
   <body>
     <div ng-app = "chores">
       <div ng-controller = "HomeController as home">
-        {{home.test}}
         <div ng-click="home.viewAdmin()">
           Parents Portal
+        </div>
+        <div ng-click="home.viewChooseChild()">
+          Click To Start
         </div>
         <div id="angular-view" ng-view>
         </div>

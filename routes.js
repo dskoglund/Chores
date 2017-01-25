@@ -37,13 +37,11 @@ const appRouter = function(db) {
     const locationQuery = { "chores.id": ObjectId(req.body.chore.id) }
     chores
       .update(locationQuery, pullQuery)
-
   })
 
   router.post('/:id', (req, res) => {
     const _id = { _id: ObjectId(req.body.id)}
     const x = ObjectId()
-
     console.log('create chore')
     const chore = { chores : { description: req.body.chore,
                               time: req.body.time,
@@ -54,7 +52,6 @@ const appRouter = function(db) {
   })
 
   return router
-
 }
 
 function parse(child) {

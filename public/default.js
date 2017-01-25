@@ -6,9 +6,9 @@ app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/chooseChild', {
-        templateUrl: '/templates/chooseChild.html',
+        templateUrl: '/templates/choose-child.html',
         controller: 'ChooseChildController',
-        controllerAs: 'chooseChild'
+        controllerAs: 'choose'
       })
       .when('/admin', {
         templateUrl: '/templates/admin.html',
@@ -24,25 +24,38 @@ app.config(['$routeProvider', '$locationProvider',
 
 app.controller('HomeController', HomeController)
 HomeController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
-function HomeController($scope, $window, choreData, $anchorScroll, $location) {
+function HomeController($scope, $window, choresData, $anchorScroll, $location) {
 
   const vm = this
 
   vm.test = 'home test'
   vm.viewAdmin = gotoAdmin
+  vm.viewChooseChild = gotoChooseChild
 
   function gotoAdmin() {
     $location.path('/admin')
+  }
+
+  function gotoChooseChild() {
+    $location.path('/chooseChild')
   }
 
 }
 
 app.controller('ChooseChildController', ChooseChildController)
 ChooseChildController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
-function ChooseChildController($scope, $window, choreData, $anchorScroll, $location) {
+function ChooseChildController($scope, $window, choresData, $anchorScroll, $location) {
 
   const vm = this
+  vm.childList = []
 
+  loadUsers()
+
+  function loadUsers() {
+    choresData.readAll()
+      .then(chores => {vm.childList = chores})
+      .catch(() => showError('Server Error: Unable to Load Chores'))
+  }
 }
 
 app.controller('AdminController', AdminController)
