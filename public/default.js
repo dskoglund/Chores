@@ -80,13 +80,13 @@ function AdminController($scope, $window, choresData) {
 
   function createChores(child, time, description) {
     choresData.createChore(child, time, description)
-
+      .then(loadUsers())
       .catch(() => showError('Server Error: Unable to Create Chore'))
   }
 
   function removeChores(chore, child) {
     choresData.deleteChore(chore, child)
-
+      .then(loadUsers())
       .catch(() => showError('Server Error: Unable to Remove Chore'))
   }
 
@@ -124,8 +124,6 @@ function choresData($http) {
   }
 
   function deleteChore(chore, child) {
-    console.log(child)
-    console.log(chore)
     let params = {
       child: child,
       chore: chore
