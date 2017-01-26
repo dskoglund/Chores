@@ -47,8 +47,6 @@ HomeController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$
 function HomeController($scope, $window, choresData, $anchorScroll, $location) {
 
   const vm = this
-
-  vm.test = 'home test'
   vm.viewAdmin = gotoAdmin
   vm.viewChooseChild = gotoChooseChild
 
@@ -79,7 +77,6 @@ function ChooseChildController($scope, $window, choresData, childChores, $anchor
   }
 
   function loadThisChild(child) {
-    console.log(child.name)
     $location.path('/DailyChores')
     childChores.loadChild(child)
   }
@@ -91,11 +88,11 @@ ChoresController.$inject = ['$scope', '$window', 'choresData', 'childChores']
 function ChoresController($scope, $window, choresData, childChores) {
 
   const vm = this
-
   vm.allChores = childChores.allChores
   vm.childName = childChores.childName
-
-  console.log(childChores.childName)
+  vm.morningChores = childChores.morningChores
+  vm.afternoonChores = childChores.afternoonChores
+  vm.eveningChores = childChores.eveningChores
 }
 
 app.controller('AdminController', AdminController)
@@ -162,7 +159,15 @@ function childChores() {
   function loadChild(child) {
     chores.allChores = child.chores
     chores.childName = child.name
-    console.log(chores.allChores)
+    chores.morningChores = child.chores.filter(function(item) {
+      return item.time === "Morning"
+    })
+    chores.afternoonChores = child.chores.filter(function(item) {
+      return item.time === "Afternoon"
+    })
+    chores.eveningChores = child.chores.filter(function(item) {
+      return item.time === "Evening"
+    })
   }
 }
 
