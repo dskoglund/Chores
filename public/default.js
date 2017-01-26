@@ -5,15 +5,35 @@ const app = angular.module('chores', [
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/chooseChild', {
+      .when('/ChooseChild', {
         templateUrl: '/templates/choose-child.html',
         controller: 'ChooseChildController',
         controllerAs: 'choose'
       })
-      .when('/admin', {
+      .when('/Admin', {
         templateUrl: '/templates/admin.html',
         controller: 'AdminController',
         controllerAs: 'admin'
+      })
+      .when('/DailyChores', {
+        templateUrl: '/templates/daily.html',
+        controller: 'ChoresController',
+        controllerAs: 'childchores'
+      })
+      .when('/MorningChores', {
+        templateUrl: '/templates/morning.html',
+        controller: 'ChoresController',
+        controllerAs: 'childchores'
+      })
+      .when('/AfternoonChores', {
+        templateUrl: '/templates/afternoon.html',
+        controller: 'ChoresController',
+        controllerAs: 'childchores'
+      })
+      .when('/EveningChores', {
+        templateUrl: '/templates/evening.html',
+        controller: 'ChoresController',
+        controllerAs: 'childchores'
       })
 
     $locationProvider.html5Mode({
@@ -33,22 +53,22 @@ function HomeController($scope, $window, choresData, $anchorScroll, $location) {
   vm.viewChooseChild = gotoChooseChild
 
   function gotoAdmin() {
-    $location.path('/admin')
+    $location.path('/Admin')
   }
 
   function gotoChooseChild() {
-    $location.path('/chooseChild')
+    $location.path('/ChooseChild')
   }
 
 }
 
 app.controller('ChooseChildController', ChooseChildController)
-ChooseChildController.$inject = ['$scope', '$window', 'choresData', '$anchorScroll', '$location' ]
-function ChooseChildController($scope, $window, choresData, $anchorScroll, $location) {
+ChooseChildController.$inject = ['$scope', '$window', 'choresData', 'childChores', '$anchorScroll', '$location' ]
+function ChooseChildController($scope, $window, choresData, childChores, $anchorScroll, $location) {
 
   const vm = this
   vm.childList = []
-  vm.thisChild = loadChildChores
+  vm.thisChild = loadThisChild
 
   loadUsers()
 
@@ -58,9 +78,21 @@ function ChooseChildController($scope, $window, choresData, $anchorScroll, $loca
       .catch(() => showError('Server Error: Unable to Load Chores'))
   }
 
-  function loadChildChores() {
-
+  function loadThisChild(child) {
+    console.log(child.name)
+    $location.path('/DailyChores')
+    childChores.loadChild(child)
   }
+
+}
+
+app.controller('ChoresController', ChoresController)
+ChoresController.$inject = ['$scope', '$window', 'choresData', 'childChores']
+function ChoresController($scope, $window, choresData, childChores) {
+
+  const vm = this
+
+  vm.allchores = childChores.allchores
 
 }
 
@@ -111,6 +143,25 @@ function AdminController($scope, $window, choresData) {
 
 }
 
+app.factory('childChores', childChores)
+function childChores() {
+
+  const chores = {
+    loadChild,
+    allChores: [],
+    morningChores: [],
+    afternoonChores: [],
+    eveningChores: []
+  }
+
+  return chores
+
+  function loadChild(child) {
+    chores.allChores.push(child)
+    console.log('pushed')
+  }
+}
+
 app.factory('choresData', choresData)
 choresData.$inject = ['$http']
 function choresData($http) {
@@ -126,7 +177,6 @@ function choresData($http) {
 
   function createChild(item) {
       return $http.post('./chores', item).then(res => res.data)
-
   }
 
   function deleteChild(item) {
