@@ -93,7 +93,9 @@ function ChoresController($scope, $window, choresData, childChores) {
   const vm = this
 
   vm.allChores = childChores.allChores
-  vm.childName = childChores.childname
+  vm.childName = childChores.childName
+
+  console.log(childChores.childName)
 }
 
 app.controller('AdminController', AdminController)
