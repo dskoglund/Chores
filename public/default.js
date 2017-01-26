@@ -48,6 +48,7 @@ function ChooseChildController($scope, $window, choresData, $anchorScroll, $loca
 
   const vm = this
   vm.childList = []
+  vm.thisChild = loadChildChores
 
   loadUsers()
 
@@ -56,6 +57,11 @@ function ChooseChildController($scope, $window, choresData, $anchorScroll, $loca
       .then(chores => {vm.childList = chores})
       .catch(() => showError('Server Error: Unable to Load Chores'))
   }
+
+  function loadChildChores() {
+
+  }
+
 }
 
 app.controller('AdminController', AdminController)
