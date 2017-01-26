@@ -5,4 +5,7 @@
   <ul ng-repeat="chores in childchores.allChores">
       <li>{{ chores.description }}</li>
   </ul>
+  <div ng-click="childchores.loadMorningChores()">
+    Morning Chores
+  </div>
 </div>

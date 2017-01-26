@@ -84,8 +84,8 @@ function ChooseChildController($scope, $window, choresData, childChores, $anchor
 }
 
 app.controller('ChoresController', ChoresController)
-ChoresController.$inject = ['$scope', '$window', 'choresData', 'childChores']
-function ChoresController($scope, $window, choresData, childChores) {
+ChoresController.$inject = ['$scope', '$window', '$location', 'choresData', 'childChores']
+function ChoresController($scope, $window, $location, choresData, childChores) {
 
   const vm = this
   vm.allChores = childChores.allChores
@@ -93,6 +93,14 @@ function ChoresController($scope, $window, choresData, childChores) {
   vm.morningChores = childChores.morningChores
   vm.afternoonChores = childChores.afternoonChores
   vm.eveningChores = childChores.eveningChores
+  vm.loadMorningChores = loadMorningChores
+  vm.loadAfternoonChores = loadAfternoonChores
+  vm.loadEveningChores = loadEveningChores
+
+  function loadMorningChores() {
+    console.log('it worked')
+    $location.path('/MorningChores')
+  }
 }
 
 app.controller('AdminController', AdminController)
