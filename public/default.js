@@ -92,8 +92,8 @@ function ChoresController($scope, $window, choresData, childChores) {
 
   const vm = this
 
-  vm.allchores = childChores.allchores
-
+  vm.allChores = childChores.allChores
+  vm.childName = childChores.childname
 }
 
 app.controller('AdminController', AdminController)
@@ -145,10 +145,11 @@ function AdminController($scope, $window, choresData) {
 
 app.factory('childChores', childChores)
 function childChores() {
-
+  let allChores
   const chores = {
     loadChild,
-    allChores: [],
+    childName: '',
+    allChores,
     morningChores: [],
     afternoonChores: [],
     eveningChores: []
@@ -157,8 +158,9 @@ function childChores() {
   return chores
 
   function loadChild(child) {
-    chores.allChores.push(child)
-    console.log('pushed')
+    chores.allChores = child.chores
+    chores.childName = child.name
+    console.log(chores.allChores)
   }
 }
 

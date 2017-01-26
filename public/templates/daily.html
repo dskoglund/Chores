@@ -1,3 +1,5 @@
 <div class="daily-template">
-{{childchores.allchores}}   
+  <ul ng-repeat="chores in childchores.allChores">
+      <li>{{ chores.description }}</li>
+  </ul>
 </div>
