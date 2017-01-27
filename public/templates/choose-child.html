@@ -1,4 +1,5 @@
 <div id="choose-child-template">
+  <h1>Select a child</h1>
     <ul ng-repeat = "child in choose.childList track by $index">
       <li ng-click="choose.thisChild(child)">{{child.name}}</li>
     </ul>
