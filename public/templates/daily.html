@@ -1,11 +1,19 @@
 <div id="daily-template">
   <div class="">
-    <h1>{{childchores.childName}}</h1>
+    <h1>{{childchores.childName}}'s Daily Chores</h1>
   </div>
   <ul ng-repeat="chores in childchores.allChores">
       <li>{{ chores.description }}</li>
   </ul>
-  <div ng-click="childchores.loadMorningChores()">
-    Morning Chores
-  </div>
+  <span ng-click="childchores.loadMorningChores()">
+    {{ childchores.childName }}'s Morning Chores
+  </span>
+  <br>
+  <span ng-click="childchores.loadAfternoonChores()">
+    {{ childchores.childName }}'s Afternoon Chores
+  </span>
+  <br>
+  <span ng-click="childchores.loadEveningChores()">
+    {{ childchores.childName }}'s Evening Chores
+  </span>
 </div>

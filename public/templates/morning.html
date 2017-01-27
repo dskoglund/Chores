@@ -2,4 +2,11 @@
   <ul ng-repeat="chores in childchores.morningChores">
     <li>{{ chores.description }}</li>
   </ul>
+  <div ng-click="childchores.loadAfternoonChores()">
+    <h1>Go to {{ childchores.childName }}'s afternoon chores</h1>
+  </div>
+  <div ng-click="childchores.loadEveningChores()">
+    <h1>Go to {{ childchores.childName }}'s evening chores</h1>
+
+  </div>
 </div>

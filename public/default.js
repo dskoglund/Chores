@@ -98,9 +98,18 @@ function ChoresController($scope, $window, $location, choresData, childChores) {
   vm.loadEveningChores = loadEveningChores
 
   function loadMorningChores() {
-    console.log('it worked')
     $location.path('/MorningChores')
   }
+
+  function loadAfternoonChores() {
+    console.log('working')
+    $location.path('/AfternoonChores')
+  }
+
+  function loadEveningChores() {
+    $location.path('/EveningChores')
+  }
+
 }
 
 app.controller('AdminController', AdminController)
