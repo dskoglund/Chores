@@ -37,6 +37,9 @@
     "express": "^4.14.0",
     "mongodb": "^2.2.10",
     "mongoose": "^4.6.4",
-    "morgan": "^1.7.0"
+    "multer": "^1.2.0",
+    "ng-file-upload": "^12.2.12",
+    "request": "^2.75.0",
+    "s3": "^4.4.0"
   }
 }
