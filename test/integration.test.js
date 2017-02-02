@@ -6,7 +6,7 @@ const data = require('./data')
 const createApp = require('../chores-app')
 
 const TEST_DB = 'mongodb://localhost:27017/test'
-const TEST_PORT = 3002
+const TEST_PORT = 3009
 const TEST_URI = 'http://localhost:' + TEST_PORT
 
 describe('Chores API', () => {
@@ -70,12 +70,14 @@ describe('Chores API', () => {
     })
   })
 
-  describe('DELETE /chores', () => {
+  describe('DELETE /chores/:id', () => {
     let _id = data[0]._id
+    console.log('test-console')
     console.log(_id)
     it('removes a user(child) object from the database', done => {
-      request.delete(TEST_URI + '/chores/' + _id, {json : true}, (err, res, body) => {
+      request.delete(TEST_URI + '/chores/58910631b91e5021df17a4af', (err, res, body) => {
         // expect(res.status).to.equal(200)
+        console.log(body)
         done()
       })
     })

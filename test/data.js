@@ -1,37 +1,37 @@
-const { ObjectId } = require( 'mongodb')
+const ObjectId = require('mongodb').ObjectID;
 
 module.exports = [
   {
+    _id: ObjectId('58910631b91e5021df17a4af'),
     name: "Skyler",
-    _id: ObjectId(),
     chores: [
       {
         time: "Morning",
-        id: ObjectId(),
+        id: "skyler1",
         description: "Make Your Bed",
         completed: false
       },
       {
         time: "Evening",
-        id: ObjectId(),
+        id: "skyler2",
         description: "Brush Your Teeth",
         completed: false
       }
     ]
   },
   {
-    name: "Riley",
     _id: ObjectId(),
+    name: "Riley",
     chores: [
       {
         description: "Make Your Bed",
-        id: ObjectId(),
+        id: "riley1",
         time: "Morning",
         completed: false
       },
       {
         description: "Brush Your Teeth",
-        id: ObjectId(),
+        id: "riley2",
         time: "Evening",
         completed: false
       }

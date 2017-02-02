@@ -1,6 +1,6 @@
 const Router = require('express').Router
 const assert = require('assert')
-const ObjectId = require('mongodb').ObjectId
+const ObjectId = require('mongodb').ObjectID
 
 const appRouter = function(db) {
   const chores = db.collection('chores')
@@ -25,8 +25,10 @@ const appRouter = function(db) {
   })
 
   router.delete('/:id', (req, res) => {
-    console.log('delete child')
+    console.log('delete this new child')
+    console.log(req.params.id)
     const id = { _id: ObjectId(req.params.id) }
+    console.log(id)
     chores
       .removeOne(id, {justOne: true})
   })
