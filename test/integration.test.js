@@ -72,12 +72,8 @@ describe('Chores API', () => {
 
   describe('DELETE /chores/:id', () => {
     let _id = data[0]._id
-    console.log('test-console')
-    console.log(_id)
     it('removes a user(child) object from the database', done => {
       request.delete(TEST_URI + '/chores/58910631b91e5021df17a4af', (err, res, body) => {
-        // expect(res.status).to.equal(200)
-        console.log(body)
         done()
       })
     })
